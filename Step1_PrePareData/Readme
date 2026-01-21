@@ -1,0 +1,17 @@
+# Check number of fields in each file
+awk 'BEGIN{FS=OFS="\t"}{print NF}' S5_MHCScore | sort | unq  28
+
+awk 'BEGIN{FS=OFS="\t"}{print NF}' S1_coverage | sort | unq  3
+
+awk 'BEGIN{FS=OFS="\t"}{print NF}' S3_Cppred | sort | unq  40
+
+awk 'BEGIN{FS=OFS="\t"}{print NF}' S4_HLA | sort | unq  7
+
+# Run the Python script to generate combined data
+python combine_peptide_data.py
+# After generating S5_combined_complete.tsv, manually added an ID column
+
+# Link S5_combined_complete.tsv with SumScore file from Score folder
+# The awk command joins the two files based on the first column of SumScore
+# and the second column of S5_combined_complete.tsv
+awk 'BEGIN{FS=OFS="\t"}NR==FNR{a[$1]=$2}NR>FNR{print $0,a[$2]}' SumScore S5_combined_complete.tsv > S5_combined_complete_score.tsv
