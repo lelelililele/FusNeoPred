@@ -1,0 +1,1 @@
+python predict.py S5_combined_complete.tsv S5_score_predict.tsv 
