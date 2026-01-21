@@ -49,6 +49,9 @@ This step requires the following input files:
 - Peplist_Score  
 ​A tab-separated file without a header, following the same column structure as the main file, and must contain both positive and negative samples for fine-tuning.  
 
+<img width="865" height="461" alt="image" src="https://github.com/user-attachments/assets/935207ca-dc55-41aa-86c6-b888d07dff97" />
+
+
 Training process：  
 ```bash
 python MLP_251230_tuneplot.py
@@ -64,10 +67,21 @@ The saved PyTorch model weights after fine-tuning (if fine-tuning is performed).
 - scaler.pkl  
 The fitted StandardScaler object saved via joblib for consistent data preprocessing.
 
+
 ## Step3: Prediction
 This step requires Step2 model files, final_model_tuned.pth and scaler.pkl.  
 
 ```bash
 python predict.py S5_combined_complete.tsv S5_score_predict.tsv
 ```
+The input file is S5_combined_complete.tsv, and the output score file is S5_score_predict.tsv.  
+
+## Step4: Drawing
+Figures in the manuscript comparing model performance before and after ranking were generated using the scripts in the Step4 folder.  
+
+<img width="966" height="344" alt="image" src="https://github.com/user-attachments/assets/65ee2466-291c-4282-b828-715581a41f27" />
+
+
+
+
 
