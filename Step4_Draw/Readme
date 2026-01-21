@@ -1,0 +1,75 @@
+# Make predictions using the model
+python predict.py S5_combined_complete.tsv S5_score_predict.tsv 
+
+# Extract peptide names and raw scores (column 2 and 75)
+awk 'BEGIN{FS=OFS="\t"}{print $2,$75}' S5_combined_complete_score.tsv > S5_score_raw.tsv
+
+# Extract peptide names and predicted scores (column 2 and 3)
+awk 'BEGIN{FS=OFS="\t"}{print $2,$3}' S5_score_predict.tsv > S5_score_predict2.tsv
+
+
+### Cannot plot together, need to separate by patient
+
+# Extract and sort raw scores for T1 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T1"){print $1,$2,$75}}' S5_combined_complete_score.tsv > T1_score_raw
+sort -k3,3rn T1_score_raw | awk '{print $0 "\t" NR}' > T1_score_raw_sorted
+
+# Extract and sort raw scores for T2 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T2"){print $1,$2,$75}}' S5_combined_complete_score.tsv > T2_score_raw
+sort -k3,3rn T2_score_raw | awk '{print $0 "\t" NR}' > T2_score_raw_sorted
+
+# Extract and sort raw scores for T3 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T3"){print $1,$2,$75}}' S5_combined_complete_score.tsv > T3_score_raw
+sort -k3,3rn T3_score_raw | awk '{print $0 "\t" NR}' > T3_score_raw_sorted
+
+# Extract and sort raw scores for T4 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T4"){print $1,$2,$75}}' S5_combined_complete_score.tsv > T4_score_raw
+sort -k3,3rn T4_score_raw | awk '{print $0 "\t" NR}' > T4_score_raw_sorted
+
+# Extract and sort raw scores for T5 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T5"){print $1,$2,$75}}' S5_combined_complete_score.tsv > T5_score_raw
+sort -k3,3rn T5_score_raw | awk '{print $0 "\t" NR}' > T5_score_raw_sorted
+
+# Alternative sorting for combined scores (commented out)
+#sort -k2,2rn S5_score_raw.tsv | awk '{print $0 "\t" NR}' > S5_score_raw_sorted.tsv
+#sort -k2,2rn S5_score_predict2.tsv | awk '{print $0 "\t" NR}' > S5_score_predict2_sorted.tsv
+
+# Extract and sort predicted scores for T1 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T1"){print $1,$2,$3}}' S5_score_predict.tsv > T1_score_predict
+sort -k3,3rn T1_score_predict | awk '{print $0 "\t" NR}' > T1_score_predict_sorted
+
+# Extract and sort predicted scores for T2 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T2"){print $1,$2,$3}}' S5_score_predict.tsv > T2_score_predict
+sort -k3,3rn T2_score_predict | awk '{print $0 "\t" NR}' > T2_score_predict_sorted
+
+# Extract and sort predicted scores for T3 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T3"){print $1,$2,$3}}' S5_score_predict.tsv > T3_score_predict
+sort -k3,3rn T3_score_predict | awk '{print $0 "\t" NR}' > T3_score_predict_sorted
+
+# Extract and sort predicted scores for T4 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T4"){print $1,$2,$3}}' S5_score_predict.tsv > T4_score_predict
+sort -k3,3rn T4_score_predict | awk '{print $0 "\t" NR}' > T4_score_predict_sorted
+
+# Extract and sort predicted scores for T5 patient
+awk 'BEGIN{FS=OFS="\t"}{if($1=="T5"){print $1,$2,$3}}' S5_score_predict.tsv > T5_score_predict
+sort -k3,3rn T5_score_predict | awk '{print $0 "\t" NR}' > T5_score_predict_sorted
+
+
+# Combine raw and predicted scores for plotting
+# For T1 patient
+awk 'BEGIN{FS=OFS="\t"}NR==FNR{a[$2]=$4}NR>FNR{print $2,$4,a[$2]}' T1_score_predict_sorted T1_score_raw_sorted > T1_score_RawPre
+
+# For T2 patient
+awk 'BEGIN{FS=OFS="\t"}NR==FNR{a[$2]=$4}NR>FNR{print $2,$4,a[$2]}' T2_score_predict_sorted T2_score_raw_sorted > T2_score_RawPre
+
+# For T3 patient
+awk 'BEGIN{FS=OFS="\t"}NR==FNR{a[$2]=$4}NR>FNR{print $2,$4,a[$2]}' T3_score_predict_sorted T3_score_raw_sorted > T3_score_RawPre
+
+# For T4 patient
+awk 'BEGIN{FS=OFS="\t"}NR==FNR{a[$2]=$4}NR>FNR{print $2,$4,a[$2]}' T4_score_predict_sorted T4_score_raw_sorted > T4_score_RawPre
+
+# For T5 patient
+awk 'BEGIN{FS=OFS="\t"}NR==FNR{a[$2]=$4}NR>FNR{print $2,$4,a[$2]}' T5_score_predict_sorted T5_score_raw_sorted > T5_score_RawPre
+
+# Execute the Python script for drawing plots
+python Draw.py
