@@ -49,6 +49,7 @@ This step requires the following input files:
 - Peplist_Score  
 ​A tab-separated file without a header, following the same column structure as the main file, and must contain both positive and negative samples for fine-tuning.  
 
+Then run training process：  
 ```bash
 python MLP_251230_tuneplot.py
 ```
