@@ -62,4 +62,12 @@ A plot visualizing the pre-training loss curves (train, validation, and test MSE
 - final_model_tuned.pth  
 The saved PyTorch model weights after fine-tuning (if fine-tuning is performed).  
 - scaler.pkl  
-The fitted StandardScaler object saved via joblib for consistent data preprocessing.  
+The fitted StandardScaler object saved via joblib for consistent data preprocessing.
+
+## Step3: Prediction
+This step requires Step2 model files, final_model_tuned.pth and scaler.pkl.  
+
+```bash
+python predict.py S5_combined_complete.tsv S5_score_predict.tsv
+```
+
