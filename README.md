@@ -44,12 +44,10 @@ awk 'BEGIN{FS=OFS="\t"}NR==FNR{a[$1]=$2}NR>FNR{print $0,a[$2]}' SumScore S5_comb
 
 ## Step2: Training
 This step requires the following input files:  
-- S5_combined_complete_score.tsv
-​
-A tab-separated file with a header, containing at least 75 columns where columns 3-74 are features and column 75 is the target score for pre-training.  
-- Peplist_Score
-​
-A tab-separated file without a header, following the same column structure as the main file, and must contain both positive and negative samples for fine-tuning.  
+- S5_combined_complete_score.tsv  
+​A tab-separated file with a header, containing at least 75 columns where columns 3-74 are features and column 75 is the target score for pre-training.  
+- Peplist_Score  
+​A tab-separated file without a header, following the same column structure as the main file, and must contain both positive and negative samples for fine-tuning.  
 
 ```bash
 python MLP_251230_tuneplot.py
