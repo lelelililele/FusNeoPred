@@ -1,7 +1,8 @@
 # ​​FusNeoPred​​  
 ## Introduction
 Fusion-derived neoantigens represent superior therapeutic targets for precision immunotherapy due to their high immunogenicity and clonality; however, their accurate identification is hindered by the scarcity of labeled data and the gap between in silico predictions and biological reality. Here, we present FusNeoPred, a weakly supervised learning framework that innovatively integrates Nanopore long-read sequencing with digital twins. By superimposing precise transcriptomic structures onto the operational digital twinning, our approach moves beyond static prediction. The framework employs a multi-module scoring system, featuring a customized Sigmoid transformation for MHC binding metrics to better evaluate physiological immunogenicity. A defining innovation of our study is the closed-loop model calibration strategy utilizing real experimental data. We established a feedback mechanism where the computational model is rigorously fine-tuned using ground-truth results derived from peptide synthesis and IFN-γ ELISpot assays in humanized mice. This iterative assimilation of wet-lab data continuously corrects the virtual parameters to align with biological complexity. In summary, the FusNeoPred framework constructed in this study effectively identifies high-confidence fusion neoantigens, offering a scalable and biologically calibrated solution for the development of next-generation cancer vaccines.  
-<img width="2269" height="1315" alt="graphical abstract-01-01" src="https://github.com/user-attachments/assets/f01f6e87-88b3-4953-bf26-728a838b155c" />
+<img width="2279" height="1315" alt="graphical abstract" src="https://github.com/user-attachments/assets/722bd6c5-72ef-4c8c-b123-b5df919ccc75" />
+
 ## Installation  
 
 You can install just the base python(v3.8) packages, include: 
