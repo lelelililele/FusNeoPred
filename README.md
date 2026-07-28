@@ -1,7 +1,9 @@
 # ​​FusNeoPred​​  
 ## Introduction
-Fusion-derived neoantigens represent superior therapeutic targets for precision immunotherapy due to their high immunogenicity and clonality; however, their accurate identification is hindered by the scarcity of labeled data and the gap between in silico predictions and biological reality. Here, we present FusNeoPred, a weakly supervised learning framework that innovatively integrates Nanopore long-read sequencing with digital twins. By superimposing precise transcriptomic structures onto the operational digital twinning, our approach moves beyond static prediction. The framework employs a multi-module scoring system, featuring a customized Sigmoid transformation for MHC binding metrics to better evaluate physiological immunogenicity. A defining innovation of our study is the closed-loop model calibration strategy utilizing real experimental data. We established a feedback mechanism where the computational model is rigorously fine-tuned using ground-truth results derived from peptide synthesis and IFN-γ ELISpot assays in humanized mice. This iterative assimilation of wet-lab data continuously corrects the virtual parameters to align with biological complexity. In summary, the FusNeoPred framework constructed in this study effectively identifies high-confidence fusion neoantigens, offering a scalable and biologically calibrated solution for the development of next-generation cancer vaccines.  
-<img width="1114" height="646" alt="graphical abstract-01-01" src="https://github.com/user-attachments/assets/01a1f3a8-d280-4a96-ac2c-93f8a2418f04" />
+Fusion-derived neoantigens are ideal targets for precision immunotherapy because of their high immunogenicity and clonality. However, their reliable identification is limited by the scarcity of labeled data and the gap between in silico predictions and biological reality. We developed FusNeoPred, a biologically calibrated deep learning framework inspired by digital twins. Integrating Nanopore long read sequencing, it employs a multimodule scoring system featuring a customized Sigmoid transformation for MHC binding affinity to better reflect physiological immunogenicity. The feature of our framework is the closed loop calibration strategy, in which a multilayer perceptron model is first pretrained using expert rule derived pseudolabels, and is subsequently fine tuned iteratively with experimental feedback obtained from peptide synthesis and IFN-γ ELISpot assays conducted in humanized HLA-A2.1 transgenic mice. Profiling colorectal cancer samples, FusNeoPred initially identified 19,651 candidate neoantigens from 32 high confidence fusion transcripts. In vivo validation confirmed that top predicted fusion neoantigens elicited robust antigen specific T cell responses and higher IFN-γ secretion than controls. Integrating this wet-lab data via a pairwise margin ranking loss allowed the model to rapidly adapt to the true ranking order without catastrophic forgetting. The calibrated model demonstrated high robustness, retaining 80%–92% of top tier candidates while successfully reprioritizing peptides by capturing nonlinear immunogenic features missed by static rules. In summary, FusNeoPred effectively identifies high confidence fusion neoantigens, providing a scalable and biologically calibrated platform for developing cancer vaccines.  
+
+<img width="3071" height="1713" alt="Figure 1_v2_0723-01" src="https://github.com/user-attachments/assets/e56e987f-02a0-4b58-b433-828bc04ea849" />
+
 
 
 ## Installation  
@@ -83,6 +85,15 @@ Figures in the manuscript comparing model performance before and after ranking w
 
 <img width="966" height="344" alt="image" src="https://github.com/user-attachments/assets/65ee2466-291c-4282-b828-715581a41f27" />
 
+## Step5: Toxicity and allergenicity prediction
+After obtaining the candidate neoantigen peptides, their toxicity was evaluated using ToxinPred 3.0 (https://webs.iiitd.edu.in/raghava/toxinpred3/) and CSM-Toxin (https://biosig.lab.uq.edu.au/csm_toxin/), while their allergenicity was assessed using AllerTOP v2.1 (https://www.ddg-pharmfac.net/allertop_v2/) and AlgPred 2.0 (https://webs.iiitd.edu.in/raghava/algpred2/).
+
+The prediction output summary was like:  
+|SequenceID|Sequence|ToxinPred 3.0|CSM-Toxin| AltterTop v2.1| AlgPred 2.0 |
+|----------|--------|----------|-----------|-----------|-----------|
+|1         |ALPAFVALL |Non-Toxin|Toxic|NON-ALLERGEN|ALLERGEN|
+|2         |LLLLSPWPL|Non-Toxin|Non-Toxin|NON-ALLERGEN|ALLERGEN|
+|3         |GQFSAVHPNV|Non-Toxin|Non-Toxin|NON-ALLERGEN|ALLERGEN|
 
 
 
