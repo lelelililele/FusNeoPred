@@ -2,7 +2,8 @@
 ## Introduction
 Fusion-derived neoantigens are ideal targets for precision immunotherapy because of their high immunogenicity and clonality. However, their reliable identification is limited by the scarcity of labeled data and the gap between in silico predictions and biological reality. We developed FusNeoPred, a biologically calibrated deep learning framework inspired by digital twins. Integrating Nanopore long read sequencing, it employs a multimodule scoring system featuring a customized Sigmoid transformation for MHC binding affinity to better reflect physiological immunogenicity. The feature of our framework is the closed loop calibration strategy, in which a multilayer perceptron model is first pretrained using expert rule derived pseudolabels, and is subsequently fine tuned iteratively with experimental feedback obtained from peptide synthesis and IFN-γ ELISpot assays conducted in humanized HLA-A2.1 transgenic mice. Profiling colorectal cancer samples, FusNeoPred initially identified 19,651 candidate neoantigens from 32 high confidence fusion transcripts. In vivo validation confirmed that top predicted fusion neoantigens elicited robust antigen specific T cell responses and higher IFN-γ secretion than controls. Integrating this wet-lab data via a pairwise margin ranking loss allowed the model to rapidly adapt to the true ranking order without catastrophic forgetting. The calibrated model demonstrated high robustness, retaining 80%–92% of top tier candidates while successfully reprioritizing peptides by capturing nonlinear immunogenic features missed by static rules. In summary, FusNeoPred effectively identifies high confidence fusion neoantigens, providing a scalable and biologically calibrated platform for developing cancer vaccines.  
 
-<img width="3071" height="1713" alt="Figure 1_v2_0723-01" src="https://github.com/user-attachments/assets/e56e987f-02a0-4b58-b433-828bc04ea849" />
+<img width="1114" height="646" alt="graphical abstract-01-01" src="https://github.com/user-attachments/assets/91b79b7c-094f-484b-a7c0-8dcfc4f55d29" />
+
 
 
 
@@ -53,7 +54,7 @@ This step requires the following input files:
 - Peplist_Score  
 ​A tab-separated file without a header, following the same column structure as the main file, and must contain both positive and negative samples for fine-tuning.  
 
-<img width="865" height="461" alt="image" src="https://github.com/user-attachments/assets/935207ca-dc55-41aa-86c6-b888d07dff97" />
+<img width="3071" height="1713" alt="Figure 1_v2_0723-01" src="https://github.com/user-attachments/assets/e56e987f-02a0-4b58-b433-828bc04ea849" />
 
 
 Training process：  
