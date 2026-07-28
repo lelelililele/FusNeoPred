@@ -87,7 +87,8 @@ Figures in the manuscript comparing model performance before and after ranking w
 <img width="966" height="344" alt="image" src="https://github.com/user-attachments/assets/65ee2466-291c-4282-b828-715581a41f27" />
 
 ## Step5: Toxicity and allergenicity prediction
-After obtaining the candidate neoantigen peptides, their toxicity was evaluated using ToxinPred 3.0 (https://webs.iiitd.edu.in/raghava/toxinpred3/) and CSM-Toxin (https://biosig.lab.uq.edu.au/csm_toxin/), while their allergenicity was assessed using AllerTOP v2.1 (https://www.ddg-pharmfac.net/allertop_v2/) and AlgPred 2.0 (https://webs.iiitd.edu.in/raghava/algpred2/).
+After obtaining the candidate neoantigen peptides, their toxicity was evaluated using ToxinPred 3.0 (https://webs.iiitd.edu.in/raghava/toxinpred3/) and CSM-Toxin (https://biosig.lab.uq.edu.au/csm_toxin/),   
+while their allergenicity was assessed using AllerTOP v2.1 (https://www.ddg-pharmfac.net/allertop_v2/) and AlgPred 2.0 (https://webs.iiitd.edu.in/raghava/algpred2/).
 
 The prediction output summary was like:  
 |SequenceID|Sequence|ToxinPred 3.0|CSM-Toxin| AltterTop v2.1| AlgPred 2.0 |
